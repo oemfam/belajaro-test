@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajaro - Kuasai Mandarin Santai & Fun</title>
+
+  <!-- PWA CONFIGURE -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0D1B2A">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/oemfam/Belajaro/c28bebf2f5a24716db9cd35cbf9684b75fb5b766/logo.jpg">
+
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --gold: #D4AF37;
+      --red: #C0392B;
+      --bg: #121820;
+      --card-bg: #1E293B;
+      --text-main: #F8FAFC;
+      --text-sub: #94A3B8;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      padding-bottom: 40px;
+    }
+    header {
+      background-color: var(--navy);
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    
+    /* ACCOUNT CARD */
+    .user-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #334155;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #334155;
+      object-fit: cover;
+    }
+    .btn-login {
+      background: white;
+      color: #333;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* PWA BANNER */
+    #pwa-install-banner {
+      display: none;
+      background: #2D3748;
+      border: 1px solid var(--gold);
+      color: #F6AD55;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* STATS HEADER ALA SUPERCHINESE */
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin: 25px 0 10px 4px;
+      font-weight: 700;
+    }
+    .course-stats {
+      display: flex;
+      justify-content: space-around;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid #334155;
+    }
+    .stat-item h3 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .stat-item p {
+      margin: 2px 0 0 0;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    /* COURSE PATH CARDS */
+    .level-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #334155;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .level-card:active {
+      transform: scale(0.98);
+    }
+    .level-card.active {
+      border-color: #38BDF8;
+    }
+    .level-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 10px;
+      background: #334155;
+      color: var(--text-sub);
+    }
+    .level-card.hsk1 .level-badge { background: #064E3B; color: #6EE7B7; }
+    .level-card.hsk2 .level-badge { background: #1E3A8A; color: #93C5FD; }
+    
+    .level-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 0 6px 0;
+    }
+    .level-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin: 0 0 12px 0;
+      line-height: 1.4;
+    }
+    
+    /* PROGRESS BAR */
+    .progress-bg {
+      background: #334155;
+      height: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38BDF8, #818CF8);
+      border-radius: 10px;
+    }
+
+    /* LIVE CLASS CARD */
+    .live-card {
+      background: linear-gradient(135deg, #7F1D1D, #991B1B);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgba(185, 28, 28, 0.3);
+    }
+    .btn-live {
+      background: #FAC710;
+      color: #000;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="margin:0; font-size:20px;">🏮 Belajaro Mandarin</h1>
+    <p style="margin:4px 0 0 0; font-size:11px; color: var(--gold);">Kuasai Mandarin Santai & Fun Bareng Temen</p>
+  </header>
+
+  <div class="container">
+    
+    <!-- BANNER INSTALL PWA -->
+    <div id="pwa-install-banner">
+      📱 Biar belajar makin ngebut, install Belajaro di HP kamu yuk!
+      <button id="install-pwa-btn" style="background:var(--gold); color:#000; border:none; padding:6px 12px; border-radius:8px; font-weight:bold; margin-top:8px; width:100%;">Install Sekarang</button>
+    </div>
+
+    <!-- USER PROFIL / LOGIN -->
+    <div class="user-card">
+      <div class="user-info">
+        <img id="user-photo" class="user-avatar" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User">
+        <div>
+          <div id="user-name" style="font-weight:bold; font-size:14px;">Halo, Teman Belajaro! 👋</div>
+          <div id="user-status" style="font-size:11px; color:var(--text-sub);">Yuk login biar progressmu kecatat!</div>
+        </div>
+      </div>
+      <button class="btn-login" id="auth-btn">Masuk</button>
+    </div>
+
+    <!-- RINGKASAN PATH -->
+    <div class="course-stats">
+      <div class="stat-item">
+        <h3>3 Level</h3>
+        <p>Jalur Belajar</p>
+      </div>
+      <div class="stat-item">
+        <h3>300+</h3>
+        <p>Kosakata Harian</p>
+      </div>
+      <div class="stat-item">
+        <h3>Santai</h3>
+        <p>Gaya Bahasa</p>
+      </div>
+    </div>
+
+    <!-- PETA JALUR BELAJAR (PATH) -->
+    <div class="section-title">📌 Jalur Belajar Kamu</div>
+
+    <!-- CARD 0: PINYIN & NADA -->
+    <div class="level-card active" onclick="bukaModul('Pinyin Dasar')">
+      <span class="level-badge" style="background:#854D0E; color:#FEF08A;">DASAR</span>
+      <div class="level-title">🔤 Fonetik & Pinyin</div>
+      <div class="level-desc">Fondasi penting! Kuasai rahasia baca Pinyin, konsonan, vokal, plus 4 nada Mandarin biar gak salah sebut.</div>
+      <div class="progress-bg"><div class="progress-fill" style="width: 100%;"></div></div>
+    </div>
+
+    <!-- CARD 1: LEVEL 1 (HSK 1) -->
+    <div class="level-card hsk1" onclick="bukaModul('HSK 1 Pemula')">
+      <span class="level-badge">LEVEL 1 (HSK 1)</span>
+      <div class="level-title">🌱 Ungkapan Sehari-hari</div>
+      <div class="level-desc">Sapaan santai, kenalan, nanya harga, makan minum, dan angka. Pas banget buat yang baru mulai dari Nol!</div>
+      <div class="progress-bg"><div class="progress-fill" style="width: 35%;"></div></div>
+    </div>
+
+    <!-- CARD 2: LEVEL 2 (HSK 2) -->
+    <div class="level-card hsk2" onclick="bukaModul('HSK 2 Menengah')">
+      <span class="level-badge">LEVEL 2 (HSK 2)</span>
+      <div class="level-title">💬 Ngobrol Lebih Ngalir</div>
+      <div class="level-desc">Curhat kegiatan harian, janjian jalan, cuaca, sampai transportasi. Kalimatmu makin panjang & keren!</div>
+      <div class="progress-bg"><div class="progress-fill" style="width: 0%;"></div></div>
+    </div>
+
+    <!-- LIVE CLASS ZOOM -->
+    <div class="live-card">
+      <span style="background:rgba(255,255,255,0.2); font-size:10px; padding:3px 8px; border-radius:10px; font-weight:bold;">LIVE INTERAKTIF</span>
+      <h3 style="margin:8px 0 4px 0; font-size:16px;">🎟️ Kelas Zoom Pekanan</h3>
+      <p style="font-size:12px; margin:0; opacity:0.9; line-height:1.4;">Mau praktek ngomong langsung & dituntun langkah demi langkah? Ikut sesi interaktif bareng mentor yuk!</p>
+      <div style="font-size:12px; font-weight:bold; margin-top:8px; color:#FDE047;">Setiap Sabtu | 19:30 WIB (Rp 5.000/sesi)</div>
+      <button class="btn-live" id="daftar-btn">Daftar & Ambil Tiket Zoom</button>
+    </div>
+
+  </div>
+
+  <!-- PWA SCRIPT -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.error(err));
+      });
+    }
+
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('pwa-install-banner').style.display = 'block';
+    });
+
+    document.getElementById('install-pwa-btn').addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          document.getElementById('pwa-install-banner').style.display = 'none';
+          deferredPrompt = null;
+        });
+      }
+    });
+
+    function bukaModul(namaModul) {
+      alert("🚀 Modul '" + namaModul + "' siap dibuka! Fitur materi interaktif akan segera hadir di modul ini.");
+    }
+  </script>
+
+  <!-- FIREBASE AUTH -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCrSnJYSAR82I7ZUacCXyfdSBVI_d5-g1E",
+      authDomain: "belajaro-sukses.firebaseapp.com",
+      projectId: "belajaro-sukses",
+      storageBucket: "belajaro-sukses.firebasestorage.app",
+      messagingSenderId: "263798805052",
+      appId: "1:263798805052:web:14dd579628abb596772939",
+      measurementId: "G-QX2SDD4VDC"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const authBtn = document.getElementById("auth-btn");
+
+    authBtn.addEventListener("click", () => {
+      if (auth.currentUser) {
+        signOut(auth).then(() => alert("Kamu berhasil keluar. Sampai jumpa lagi!"));
+      } else {
+        signInWithPopup(auth, provider).catch(err => alert("Gagal Login: " + err.message));
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("user-name").innerText = "Halo, " + user.displayName.split(" ")[0] + "! 🔥";
+        document.getElementById("user-status").innerText = "Siap lanjut belajar hari ini?";
+        document.getElementById("user-photo").src = user.photoURL;
+        authBtn.innerText = "Keluar";
+        authBtn.style.background = "#334155";
+        authBtn.style.color = "#fff";
+      } else {
+        document.getElementById("user-name").innerText = "Halo, Teman Belajaro! 👋";
+        document.getElementById("user-status").innerText = "Yuk login biar progressmu kecatat!";
+        document.getElementById("user-photo").src = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+        authBtn.innerText = "Masuk";
+        authBtn.style.background = "#fff";
+        authBtn.style.color = "#333";
+      }
+    });
+
+    document.getElementById("daftar-btn").addEventListener("click", () => {
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        alert("Login dulu yuk pakai Google sebelum ambil tiket Zoom!");
+        return;
+      }
+      alert("Mengarahkan " + currentUser.displayName + " ke halaman pembayaran Mayar Rp5.000...");
+    });
+  </script>
+</body>
+</html>
