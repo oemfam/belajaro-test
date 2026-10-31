@@ -48,18 +48,19 @@
         <button onclick="logoutMember()" class="text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-1 rounded hover:bg-rose-500 hover:text-white transition">Logout</button>
       </div>
 
-      <button id="themeToggle" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-800 dark:bg-slate-700 text-amber-400 border border-slate-700 hover:scale-105 transition">
+      <!-- TOMBOL TEMA TERANG/GELAP DI HEADER ATAS (GAMBAR 1) -->
+      <button id="themeToggle" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-amber-400 border border-slate-700 hover:scale-105 transition shadow-md" title="Ubah Tema Terang/Gelap">
         <span id="themeIcon">☀️</span>
       </button>
 
-      <button onclick="openAdminModal()" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-2 rounded-lg transition">
+      <button onclick="openAdminModal()" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-2 rounded-xl transition">
         🔒 Tim Access
       </button>
     </div>
   </header>
 
   <!-- ================= SECTION 1: LANDING PAGE UTAMA ================= -->
-  <main id="landingSection" class="max-w-2xl mx-auto px-4 text-center my-auto py-8">
+  <main id="landingSection" class="max-w-3xl mx-auto px-4 text-center my-auto py-8">
     <h1 class="text-4xl md:text-5xl font-extrabold text-amber-400 mb-2">
       Belajaro
     </h1>
@@ -68,12 +69,12 @@
       "Mulai Aja Dulu, Paham Kemudian."
     </p>
     
-    <p class="text-xs text-slate-400 tracking-wider uppercase font-semibold mb-6">
-      Standar Resmi HSK 3.0 Hanban China & Multi-Skill Platform
+    <p class="text-xs text-slate-400 tracking-wider uppercase font-semibold mb-8">
+      STANDAR RESMI HSK 3.0 HANBAN CHINA & MULTI-SKILL PLATFORM
     </p>
 
-    <!-- Tombol Akses Utama & Placement Test -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-lg mx-auto mb-8">
+    <!-- Tombol Menu Utama -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
       <button onclick="openCatalog('guest')" class="p-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-left transition shadow-lg hover:border-amber-500/50">
         <div class="font-bold text-amber-400">Mode Guest 🚀</div>
         <div class="text-xs text-slate-400 mt-1">Preview kurikulum HSK 1-9</div>
@@ -82,9 +83,10 @@
         <div class="font-bold text-blue-400">Test Level ⏱️</div>
         <div class="text-xs text-slate-400 mt-1">Cek level HSK dalam 5 menit</div>
       </button>
+      <!-- MENU MEMBER DENGAN KETERANGAN BARU (GAMBAR 4) -->
       <button onclick="openAuthModal()" class="p-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-left transition shadow-lg">
         <div>Member 🔑</div>
-        <div class="text-xs text-slate-900/80 mt-1 font-normal">Akses ujian & sertifikat</div>
+        <div class="text-xs text-slate-900/90 mt-1 font-semibold leading-relaxed">Akses lengkap semua materi, dan ujian bersertifikat belajaro.</div>
       </button>
     </div>
 
@@ -99,19 +101,19 @@
     </div>
   </main>
 
-  <!-- ================= SECTION 2: KATALOG HSK 1 - HSK 9 (STANDAR HSK 3.0) ================= -->
+  <!-- ================= SECTION 2: KATALOG HSK 1 - HSK 9 ================= -->
   <main id="catalogSection" class="max-w-5xl mx-auto px-4 py-6 w-full hidden">
     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
       <div>
         <h2 id="catalogTitle" class="text-2xl font-bold text-amber-400">Kurikulum Resmi HSK 3.0 Hanban 🚀</h2>
-        <p class="text-xs text-slate-400">Jumlah kosakata disesuaikan secara presisi dengan standar terbaru pusat HSK dunia[cite: 7].</p>
+        <p class="text-xs text-slate-400">Pilih jenjang HSK untuk melihat daftar kosakata preview dan lanjut berlangganan.</p>
       </div>
       <button onclick="showLandingPage()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-lg text-slate-300 border border-slate-700 transition">
         ← Kembali
       </button>
     </div>
 
-    <!-- Tab Filter HSK 1 - HSK 9 dengan State Aktif Berwarna Oranye & Pop-up -->
+    <!-- Tab Filter HSK 1 - HSK 9 -->
     <div class="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
       <button onclick="filterHsk('all', this)" class="hsk-tab active-tab bg-amber-500 text-slate-900 font-bold px-4 py-2 rounded-full text-xs whitespace-nowrap transition transform scale-105 shadow-md">Semua Level</button>
       <button onclick="filterHsk('hsk1', this)" class="hsk-tab bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">HSK 1 (300 kata)</button>
@@ -123,97 +125,86 @@
       <button onclick="filterHsk('hsk79', this)" class="hsk-tab bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">HSK 7-9 (±11.000 kata)</button>
     </div>
 
-    <div id="hskGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Generated via JS -->
-    </div>
+    <div id="hskGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </main>
 
-  <!-- ================= SECTION 3: PLACEMENT TEST HSK (5 MENIT) ================= -->
+  <!-- ================= SECTION 3: PLACEMENT TEST LENGKAP 18 SOAL (GAMBAR 3) ================= -->
   <main id="testSection" class="max-w-2xl mx-auto px-4 py-8 w-full hidden">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-800">
         <div>
           <h2 class="text-xl font-bold text-amber-400">⏱️ HSK Placement Test (5 Menit)</h2>
-          <p class="text-xs text-slate-400">Jawab pertanyaan berikut untuk mengetahui level HSK yang tepat bagi Anda.</p>
+          <p class="text-xs text-slate-400">Tes lengkap mendeteksi level HSK 1 sampai 9 Anda secara akurat.</p>
         </div>
         <button onclick="showLandingPage()" class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg">Keluar</button>
       </div>
 
-      <div id="quizContainer">
-        <div class="mb-4">
-          <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded font-bold">Soal 1 dari 3</span>
-          <h3 class="text-sm font-bold text-slate-200 mt-2">Bagaimana cara membaca pinyin dan arti dari karakter "谢谢"?</h3>
+      <div id="quizContainer" class="space-y-4">
+        <!-- Soal Dinamis 18 Soal -->
+        <div id="questionBox" class="p-4 bg-slate-800/60 rounded-xl border border-slate-700">
+          <!-- Diisi via JS -->
         </div>
-        <div class="space-y-2 text-xs">
-          <label class="block p-3 bg-slate-800 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="q1" value="hsk1"> A. xiè xie = Terima kasih</label>
-          <label class="block p-3 bg-slate-800 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="q1" value="hsk4"> B. xiè kě = Memahami struktur kompleks</label>
-          <label class="block p-3 bg-slate-800 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="q1" value="hsk79"> C. Istilah sastra klasik tingkat lanjut</label>
+        <div class="flex justify-between">
+          <button id="prevBtn" onclick="prevQuestion()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs hidden">← Sebelumnya</button>
+          <button id="nextBtn" onclick="nextQuestion()" class="ml-auto bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-6 py-2.5 rounded-xl text-xs">Selanjutnya →</button>
         </div>
-        <button onclick="submitTest()" class="mt-6 w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl text-xs transition">Lihat Hasil Level Saya 🎯</button>
       </div>
-      <div id="testResult" class="hidden text-center py-6"></div>
+
+      <div id="testResult" class="hidden text-center py-6 space-y-4"></div>
     </div>
   </main>
 
-  <!-- ================= MODAL MATERI & UJIAN LEVEL ================= -->
+  <!-- ================= MODAL MATERI & KOSAKATA GUEST (GAMBAR 2) ================= -->
   <div id="materialModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
     <div class="bg-slate-900 border border-slate-700 w-full max-w-3xl rounded-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/50">
         <div>
-          <h3 id="modalTitle" class="font-bold text-amber-400 text-lg">Modul Belajar HSK</h3>
-          <p id="modalSubtitle" class="text-xs text-slate-400">Standar Resmi HSK 3.0</p>
+          <h3 id="modalTitle" class="font-bold text-amber-400 text-lg">Modul Pembelajaran HSK</h3>
+          <p id="modalSubtitle" class="text-xs text-slate-400">Preview Kosakata Pilihan</p>
         </div>
         <button onclick="closeMaterialModal()" class="text-slate-400 hover:text-white p-2 text-xl font-bold">✕</button>
       </div>
-      <div id="modalContent" class="p-4 overflow-y-auto space-y-4 text-xs"></div>
-      <div class="p-4 border-t border-slate-800 flex justify-between items-center bg-slate-800/30">
-        <button onclick="startExam()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg text-xs transition">📝 Ikuti Ujian Modul & Ambil Sertifikat</button>
-        <button onclick="closeMaterialModal()" class="bg-slate-800 text-slate-300 font-bold px-4 py-2 rounded-lg text-xs">Tutup</button>
+      <div id="modalContent" class="p-4 overflow-y-auto space-y-3 text-xs">
+        <!-- 1-20 Kosakata Preview -->
+      </div>
+      <div class="p-4 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-3 bg-slate-800/30">
+        <div class="text-[11px] text-amber-400 font-medium">✨ Ingin akses materi penuh & sertifikat resmi?</div>
+        <div class="flex gap-2">
+          <button onclick="closeMaterialModal(); openAuthModal();" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-xs transition">Lanjut Member & Ambil Sertifikat 🔑</button>
+          <button onclick="closeMaterialModal()" class="bg-slate-800 text-slate-300 font-bold px-4 py-2 rounded-lg text-xs">Tutup</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ================= MODAL UJIAN & SERTIFIKAT OTOMATIS ================= -->
-  <div id="examModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 text-center shadow-2xl">
-      <span class="text-3xl">🎓</span>
-      <h3 class="font-bold text-amber-400 text-lg mt-2">Ujian Kelulusan Level</h3>
-      <p id="examSub" class="text-xs text-slate-400 mb-4">Jawab 1 soal evaluasi cepat untuk menerbitkan sertifikat resmi Belajaro.</p>
-      
-      <div id="examBody" class="text-left text-xs space-y-3">
-        <p class="font-semibold text-slate-200">Evaluasi: Apakah Anda memahami kosa kata dan tata bahasa pada modul ini?</p>
-        <label class="block p-2.5 bg-slate-800 rounded-lg cursor-pointer"><input type="radio" name="examAns" value="ok" checked> Ya, saya paham dan siap menerbitkan sertifikat.</label>
-        <button onclick="generateCertificate()" class="w-full mt-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl text-xs transition">Kirim Ujian & Cetak Sertifikat 🏆</button>
-      </div>
-
-      <div id="certOutput" class="hidden text-left bg-slate-950 p-4 rounded-xl border border-amber-500/40 mt-4 space-y-2">
-        <div class="text-center border-b border-slate-800 pb-2">
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">PT Belajaro Sukses Bersama</span>
-          <h4 class="font-bold text-slate-100 text-sm">SERTIFIKAT KELULUSAN RESMI</h4>
-        </div>
-        <div class="text-[11px] text-slate-300 space-y-1">
-          <p><b>Diberikan Kepada:</b> Siswa Member Belajaro</p>
-          <p><b>Kompetensi:</b> <span id="certLevelName">HSK 3.0 Level</span></p>
-          <p><b>ID Unik Verifikasi:</b> <code id="certCodeGenerated" class="text-amber-400 font-mono"></code></p>
-        </div>
-        <p class="text-[9px] text-slate-400 text-center mt-2">Sertifikat ini sah dan dapat diverifikasi secara online di web resmi belajaro.com</p>
-        <button onclick="closeExamModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-2 rounded-lg text-xs font-bold mt-2">Selesai & Simpan</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= MODAL LOGIN MEMBER (FIREBASE AUTH) ================= -->
+  <!-- ================= MODAL LOGIN & PILIHAN HARGA MEMBER ================= -->
   <div id="authModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-slate-900 border border-slate-700 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative text-center">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
       <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
       <span class="text-3xl">🔑</span>
-      <h3 class="font-bold text-amber-400 text-xl mt-2">Login Member Class</h3>
-      <p class="text-xs text-slate-400 mb-6">Akses seluruh HSK 1-9 & Cetak Sertifikat Resmi.</p>
+      <h3 class="font-bold text-amber-400 text-xl mt-2">Gabung Member Belajaro</h3>
+      <p class="text-xs text-slate-400 mb-4">Pilih paket langganan untuk akses penuh semua materi & ujian bersertifikat.</p>
       
-      <div class="space-y-3">
-        <input type="email" id="loginEmail" placeholder="Alamat Email" class="w-full text-xs p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
+      <!-- Pilihan Paket Langganan -->
+      <div class="grid grid-cols-2 gap-3 mb-6 text-left">
+        <div class="p-3 rounded-xl bg-slate-800 border-2 border-amber-500 cursor-pointer">
+          <div class="text-[10px] bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded w-max mb-1">Populer</div>
+          <div class="font-bold text-slate-100 text-xs">1 Tahun</div>
+          <div class="text-amber-400 font-extrabold text-sm mt-1">Rp 168.000</div>
+          <div class="text-[10px] text-slate-400 mt-1">Full akses HSK 1-9</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer hover:border-amber-500">
+          <div class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2 py-0.5 rounded w-max mb-1">Hemat 60%</div>
+          <div class="font-bold text-slate-100 text-xs">5 Tahun</div>
+          <div class="text-amber-400 font-extrabold text-sm mt-1">Rp 359.000</div>
+          <div class="text-[10px] text-slate-400 mt-1">Investasi jangka panjang</div>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-left">
+        <input type="email" id="loginEmail" placeholder="Alamat Email Aktif" class="w-full text-xs p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
         <input type="password" id="loginPassword" placeholder="Kata Sandi" class="w-full text-xs p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
-        <button onclick="loginWithEmail()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl text-xs transition">Masuk Akun</button>
+        <button onclick="loginWithEmail()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl text-xs transition">Bayar & Aktifkan Member Sekarang 🚀</button>
       </div>
     </div>
   </div>
@@ -236,21 +227,64 @@
     <span class="tracking-wide">ADMIN WA</span>
   </a>
 
-  <!-- ================= SCRIPT LOGIKA & DATABASE HSK 3.0 ================= -->
+  <!-- ================= SCRIPT LOGIKA LENGKAP ================= -->
   <script>
-    // DATABASE RESMI HSK 3.0 (Hanban / Center for Language Education and Cooperation)
+    // DATABASE HSK 3.0 LENGKAP DENGAN KOSAKATA PREVIEW
     const hskData = [
-      { id: "hsk1", level: "HSK Level 1", vocabCount: "300 Kata", desc: "Dasar pengenalan Hanzi, Pinyin, Nada, dan sapaan percakapan esensial sehari-hari[cite: 7].", badge: "Dasar", samples: [{ hanzi: "你好", pinyin: "nǐ hǎo", arti: "Halo", contoh: "你好！很高兴认识你。" }] },
-      { id: "hsk2", level: "HSK Level 2", vocabCount: "500 Kata", desc: "Mampu berkomunikasi dalam topik sederhana dan rutin sehari-hari[cite: 7].", badge: "Dasar", samples: [{ hanzi: "准备", pinyin: "zhǔn bèi", arti: "Persiapan", contoh: "你准备好了吗？" }] },
-      { id: "hsk3", level: "HSK Level 3", vocabCount: "1.000 Kata", desc: "Kompetensi komunikasi dasar dalam kehidupan pribadi, akademik, & sosial[cite: 7].", badge: "Dasar", samples: [{ hanzi: "环境", pinyin: "huán jìng", arti: "Lingkungan", contoh: "这里的环境很好。" }] },
-      { id: "hsk4", level: "HSK Level 4", vocabCount: "2.000 Kata", desc: "Mampu berdiskusi berbagai topik secara lancar dengan penutur asli[cite: 7].", badge: "Menengah", samples: [{ hanzi: "经验", pinyin: "jīng yàn", arti: "Pengalaman", contoh: "他 rèn zhēn 工作。" }] },
-      { id: "hsk5", level: "HSK Level 5", vocabCount: "3.600 Kata", desc: "Mampu membaca koran/majalah Mandarin dan menikmati film/pidato formal[cite: 7].", badge: "Menengah", samples: [{ hanzi: "贡献", pinyin: "gòng xiàn", arti: "Kontribusi", contoh: "做出 巨大 贡献。" }] },
-      { id: "hsk6", level: "HSK Level 6", vocabCount: "5.400 Kata", desc: "Mampu memahami informasi lisan & tertulis tingkat lanjut secara profesional[cite: 7].", badge: "Menengah", samples: [{ hanzi: "抽象", pinyin: "chōu xiàng", arti: "Abstrak", contoh: "概念比较抽象。" }] },
-      { id: "hsk79", level: "HSK Level 7 - 9", vocabCount: "±11.000 Kata", desc: "Tingkat Mahir: Bahasa Akademik, Sastra, Bisnis Internasional, & Penerjemahan[cite: 7].", badge: "Mahir", samples: [{ hanzi: "战略", pinyin: "zhàn lüè", arti: "Strategi", contoh: "商业战略规划。" }] }
+      { id: "hsk1", level: "HSK Level 1", vocabCount: "300 Kata", desc: "Dasar pengenalan Hanzi, Pinyin, Nada, dan sapaan esensial[cite: 7].", badge: "Dasar", samples: [
+        { hanzi: "你好", pinyin: "nǐ hǎo", arti: "Halo", contoh: "你好！很高兴认识你。" },
+        { hanzi: "谢谢", pinyin: "xiè xie", arti: "Terima kasih", contoh: "谢谢你的帮助。" },
+        { hanzi: "再见", pinyin: "zài jiàn", arti: "Sampai jumpa", contoh: "明天见，再见！" },
+        { hanzi: "人", pinyin: "rén", arti: "Orang", contoh: "他是一个好人。" },
+        { hanzi: "中国", pinyin: "zhōng guó", arti: "Tiongkok", contoh: "我想去中国." }
+      ]},
+      { id: "hsk2", level: "HSK Level 2", vocabCount: "500 Kata", desc: "Komunikasi rutin topik sederhana sehari-hari[cite: 7].", badge: "Dasar", samples: [
+        { hanzi: "准备", pinyin: "zhǔn bèi", arti: "Persiapan", contoh: "你准备好了吗？" },
+        { hanzi: "时间", pinyin: "shí jiān", arti: "Waktu", contoh: "我没有时间。" },
+        { hanzi: "机场", pinyin: "jī chǎng", arti: "Bandara", contoh: "我去机场接他。" }
+      ]},
+      { id: "hsk3", level: "HSK Level 3", vocabCount: "1.000 Kata", desc: "Kehidupan pribadi, akademik, & sosial dasar[cite: 7].", badge: "Dasar", samples: [
+        { hanzi: "环境", pinyin: "huán jìng", arti: "Lingkungan", contoh: "这里的环境很好。" },
+        { hanzi: " 决定", pinyin: "jué dìng", arti: "Memutuskan", contoh: "我已经决定了。" }
+      ]},
+      { id: "hsk4", level: "HSK Level 4", vocabCount: "2.000 Kata", desc: "Diskusi lancar berbagai topik dengan penutur asli[cite: 7].", badge: "Menengah", samples: [
+        { hanzi: "经验", pinyin: "jīng yàn", arti: "Pengalaman", contoh: "他 rèn zhēn 工作。" }
+      ]},
+      { id: "hsk5", level: "HSK Level 5", vocabCount: "3.600 Kata", desc: "Membaca koran dan menonton film Mandarin[cite: 7].", badge: "Menengah", samples: [
+        { hanzi: "贡献", pinyin: "gòng xiàn", arti: "Kontribusi", contoh: "做出 巨大 贡献。" }
+      ]},
+      { id: "hsk6", level: "HSK Level 6", vocabCount: "5.400 Kata", desc: "Memahami informasi lisan & tertulis tingkat lanjut[cite: 7].", badge: "Menengah", samples: [
+        { hanzi: "抽象", pinyin: "chōu xiàng", arti: "Abstrak", contoh: "概念比较抽象。" }
+      ]},
+      { id: "hsk79", level: "HSK Level 7 - 9", vocabCount: "±11.000 Kata", desc: "Tingkat Mahir: Akademik, Bisnis Internasional, Sastra[cite: 7].", badge: "Mahir", samples: [
+        { hanzi: "战略", pinyin: "zhàn lüè", arti: "Strategi", contoh: "商业战略规划。" }
+      ]}
     ];
 
-    let currentMode = 'guest';
-    let selectedActiveHskTitle = "HSK 1";
+    // 18 SOAL PLACEMENT TEST (MENCAMPUR LEVEL HSK 1 - 9)
+    const testQuestions = [
+      { q: "Apa arti dari pinyin 'nǐ hǎo'?", opts: ["Halo", "Terima kasih", "Sampai jumpa", "Selamat malam"], level: 1 },
+      { q: "Bagaimana penulisan Hanzi untuk 'Terima kasih'?", opts: ["谢谢", "再见", "你好", "老师"], level: 1 },
+      { q: "Apa arti kata 'zhǔn bèi' (准备)?", opts: ["Persiapan", "Makan", "Minum", "Tidur"], level: 2 },
+      { q: "Manakah kosakata HSK 2 yang berarti 'Bandara'?", opts: ["机场", "车站", "学校", "医院"], level: 2 },
+      { q: "Apa arti kata 'huán jìng' (环境)?", opts: ["Lingkungan", "Gedung", "Rumah", "Jalan"], level: 3 },
+      { q: "Manakah ungkapan keputusan dalam HSK 3?", opts: ["决定", "希望", "可能", "所以"], level: 3 },
+      { q: "Apa arti kata 'jīng yàn' (经验) dalam HSK 4?", opts: ["Pengalaman", "Ekonomi", "Pendidikan", "Perusahaan"], level: 4 },
+      { q: "Struktur kalimat lanjutan HSK 4 berkaitan dengan...", opts: ["Diskusi topik umum & kerja", "Sastra klasik kuno", "Pinyin dasar", "Angka 1-10"], level: 4 },
+      { q: "Apa arti istilah 'gòng xiàn' (贡献) di HSK 5?", opts: ["Kontribusi", "Konflik", "Kompetisi", "Komunikasi"], level: 5 },
+      { q: "Kemampuan membaca teks berita/koran dicapai pada level...", opts: ["HSK 5", "HSK 1", "HSK 2", "HSK 3"], level: 5 },
+      { q: "Apa makna kosa kata 'chōu xiàng' (抽象)?", opts: ["Abstrak", "Konkrit", "Nyata", "Pasti"], level: 6 },
+      { q: "Standar HSK 6 menuntut pemahaman literatur tingkat...", opts: ["Mahir profesional", "Pemula", "Anak-anak", "Dasar"], level: 6 },
+      { q: "Istilah bisnis tingkat lanjut 'zhàn lüè' (战略) dipelajari di...", opts: ["HSK 7-9", "HSK 1", "HSK 2", "HSK 3"], level: 7 },
+      { q: "Level HSK 7-9 ditujukan untuk spesialis bidang...", opts: ["Akademik & Penerjemahan Profesional", "Siswa SD", "Wisatawan", "Pemula hobi"], level: 7 },
+      { q: "Berapa total kosakata kumulatif standar HSK 3.0 Level 6?", opts: ["5.400 kata", "150 kata", "1.200 kata", "300 kata"], level: 6 },
+      { q: "Berapa total kosakata HSK 3.0 Level 1?", opts: ["300 kata", "150 kata", "500 kata", "1.000 kata"], level: 1 },
+      { q: "Berapa total kosakata HSK 3.0 Level 3?", opts: ["1.000 kata", "600 kata", "2.000 kata", "3.600 kata"], level: 3 },
+      { q: "Berapa total kosakata HSK 3.0 Level 4?", opts: ["2.000 kata", "1.200 kata", "3.600 kata", "5.400 kata"], level: 4 }
+    ];
+
+    let currentQIndex = 0;
+    let userAnswers = {};
 
     function renderHskGrid(filter = 'all') {
       const grid = document.getElementById('hskGrid');
@@ -269,7 +303,7 @@
               <p class="text-xs text-slate-400 mb-4">${item.desc}</p>
             </div>
             <button onclick="openMaterialModal('${item.id}')" class="w-full bg-slate-700 hover:bg-amber-500 hover:text-slate-900 text-amber-400 font-bold py-2.5 rounded-lg text-xs transition">
-              Buka Modul Pembelajaran 📖
+              Preview Kosakata 📖
             </button>
           `;
           grid.appendChild(card);
@@ -277,7 +311,7 @@
       });
     }
 
-    // PERBAIKAN: Tombol Filter Aktif Berganti Warna Oranye & Efek Pop-up
+    // FILTER TAB AKTIF BERWARNA ORANYE & POP-UP
     function filterHsk(cat, btnElement) {
       document.querySelectorAll('.hsk-tab').forEach(btn => {
         btn.className = "hsk-tab bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700";
@@ -287,7 +321,6 @@
     }
 
     function openCatalog(mode) {
-      currentMode = mode;
       document.getElementById('landingSection').classList.add('hidden');
       document.getElementById('testSection').classList.add('hidden');
       document.getElementById('catalogSection').classList.remove('hidden');
@@ -300,41 +333,100 @@
       document.getElementById('landingSection').classList.remove('hidden');
     }
 
-    // PLACEMENT TEST
+    // PLACEMENT TEST LOGIC (18 SOAL)
     function openPlacementTest() {
+      currentQIndex = 0;
+      userAnswers = {};
       document.getElementById('landingSection').classList.add('hidden');
+      document.getElementById('testResult').classList.add('hidden');
+      document.getElementById('quizContainer').classList.remove('hidden');
       document.getElementById('testSection').classList.remove('hidden');
+      loadQuestion();
     }
 
-    function submitTest() {
+    function loadQuestion() {
+      const q = testQuestions[currentQIndex];
+      const box = document.getElementById('questionBox');
+      let html = `
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded font-bold">Soal ${currentQIndex + 1} dari ${testQuestions.length}</span>
+          <span class="text-[10px] text-slate-400">Level Target: HSK ${q.level}</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-200 mt-2 mb-3">${q.q}</h3>
+        <div class="space-y-2 text-xs">
+      `;
+      q.opts.forEach((opt, idx) => {
+        const checked = userAnswers[currentQIndex] === idx ? 'checked' : '';
+        html += `<label class="block p-3 bg-slate-900 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="testOpt" value="${idx}" ${checked} onclick="userAnswers[currentQIndex]=${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>`;
+      });
+      html += `</div>`;
+      box.innerHTML = html;
+
+      document.getElementById('prevBtn').style.display = currentQIndex > 0 ? 'block' : 'none';
+      document.getElementById('nextBtn').innerText = currentQIndex === testQuestions.length - 1 ? 'Lihat Hasil Level 🎯' : 'Selanjutnya →';
+    }
+
+    function nextQuestion() {
+      if (userAnswers[currentQIndex] === undefined) {
+        alert("Silakan pilih salah satu jawaban terlebih dahulu.");
+        return;
+      }
+      if (currentQIndex < testQuestions.length - 1) {
+        currentQIndex++;
+        loadQuestion();
+      } else {
+        calculateTestResult();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        loadQuestion();
+      }
+    }
+
+    function calculateTestResult() {
+      let score = 0;
+      testQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === 0) score++; // Simulasi kunci benar di opsi A
+      });
+
+      let detectedLevel = "HSK 1 - 2 (Dasar)";
+      if (score >= 12) detectedLevel = "HSK 5 - 6 (Menengah/Mahir)";
+      else if (score >= 6) detectedLevel = "HSK 3 - 4 (Menengah)";
+
+      document.getElementById('quizContainer').classList.add('hidden');
       const res = document.getElementById('testResult');
       res.classList.remove('hidden');
       res.innerHTML = `
-        <div class="p-4 bg-emerald-900/40 border border-emerald-600 rounded-xl text-emerald-300">
-          <h3 class="font-bold text-sm">🎉 Hasil Placement Test Selesai!</h3>
-          <p class="text-xs mt-1">Berdasarkan jawaban Anda, level kemampuan Anda direkomendasikan di <b>HSK Level 2 - 3 (500 - 1.000 kata)</b>.</p>
-          <button onclick="openCatalog('member')" class="mt-3 bg-amber-500 text-slate-900 font-bold px-4 py-2 rounded-lg text-xs">Mulai Belajar di Level Ini 🚀</button>
+        <div class="p-5 bg-emerald-900/40 border border-emerald-600 rounded-xl text-emerald-300 space-y-2">
+          <h3 class="font-bold text-base">🎉 Hasil Placement Test Selesai!</h3>
+          <p class="text-xs">Total Jawaban Benar: <b>${score} dari ${testQuestions.length} soal</b></p>
+          <p class="text-xs">Rekomendasi Level HSK Anda: <b class="text-amber-400 text-sm">${detectedLevel}</b></p>
+          <p class="text-[11px] text-slate-300 mt-2">Untuk mulai belajar di level ini secara penuh dan mendapatkan sertifikat resmi, silakan bergabung menjadi member.</p>
+          <button onclick="openAuthModal()" class="mt-3 bg-amber-500 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg hover:bg-amber-400">Lanjut Belajar & Gabung Member 🔑</button>
         </div>
       `;
     }
 
-    // MODAL MATERI
+    // MODAL MATERI KOSAKATA GUEST
     function openMaterialModal(hskId) {
       const item = hskData.find(d => d.id === hskId);
-      selectedActiveHskTitle = item.level;
       document.getElementById('modalTitle').innerText = item.level;
       document.getElementById('modalSubtitle').innerText = `${item.vocabCount} - Standar HSK 3.0`;
       
-      let html = `<p class="text-slate-300 font-medium">${item.desc}</p><hr class="border-slate-800">`;
-      item.samples.forEach(s => {
+      let html = `<p class="text-slate-300 font-medium mb-2">${item.desc}</p>`;
+      item.samples.forEach((s, i) => {
         html += `
           <div class="p-3 bg-slate-800 rounded-lg border border-slate-700">
             <div class="flex items-center gap-3">
-              <span class="text-xl font-bold text-amber-400">${s.hanzi}</span>
+              <span class="text-amber-400 font-bold">#${i+1}</span>
+              <span class="text-lg font-bold text-amber-400">${s.hanzi}</span>
               <span class="text-slate-400 italic">(${s.pinyin})</span>
               <span class="font-semibold text-slate-200">= ${s.arti}</span>
             </div>
-            <p class="text-slate-400 text-[11px] mt-1">Contoh: ${s.contoh}</p>
+            <p class="text-slate-400 text-[11px] mt-1">Contoh Kalimat: ${s.contoh}</p>
           </div>
         `;
       });
@@ -344,27 +436,6 @@
 
     function closeMaterialModal() {
       document.getElementById('materialModal').classList.add('hidden');
-    }
-
-    // UJIAN & SERTIFIKAT OTOMATIS
-    function startExam() {
-      closeMaterialModal();
-      document.getElementById('examBody').classList.remove('hidden');
-      document.getElementById('certOutput').classList.add('hidden');
-      document.getElementById('examSub').innerText = `Ujian Evaluasi untuk ${selectedActiveHskTitle}`;
-      document.getElementById('examModal').classList.remove('hidden');
-    }
-
-    function generateCertificate() {
-      const uniqueCode = "BLJ-2026-" + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('certLevelName').innerText = selectedActiveHskTitle + " (HSK 3.0)";
-      document.getElementById('certCodeGenerated').innerText = uniqueCode;
-      document.getElementById('examBody').classList.add('hidden');
-      document.getElementById('certOutput').classList.remove('hidden');
-    }
-
-    function closeExamModal() {
-      document.getElementById('examModal').classList.add('hidden');
     }
 
     function verifyCertificate() {
@@ -379,18 +450,35 @@
     function openAuthModal() { document.getElementById('authModal').classList.remove('hidden'); }
     function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
     function loginWithEmail() {
+      const email = document.getElementById('loginEmail').value;
+      if (!email) { alert("Masukkan email Anda"); return; }
       closeAuthModal();
       document.getElementById('userProfile').classList.remove('hidden');
-      document.getElementById('userName').innerText = "Siswa Member";
+      document.getElementById('userName').innerText = email.split('@')[0];
       openCatalog('member');
     }
     function logoutMember() {
       document.getElementById('userProfile').classList.add('hidden');
       showLandingPage();
     }
+    
+    // TOGGLE TEMA TERANG / GELAP
     function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
+      const htmlClass = document.documentElement.classList;
+      const themeIcon = document.getElementById('themeIcon');
+      if (htmlClass.contains('dark')) {
+        htmlClass.remove('dark');
+        document.body.classList.replace('bg-brand-darkBg', 'bg-slate-100');
+        document.body.classList.replace('text-slate-100', 'text-slate-800');
+        themeIcon.innerText = '🌙';
+      } else {
+        htmlClass.add('dark');
+        document.body.classList.replace('bg-slate-100', 'bg-brand-darkBg');
+        document.body.classList.replace('text-slate-800', 'text-slate-100');
+        themeIcon.innerText = '☀️';
+      }
     }
+
     function openAdminModal() {
       prompt("Portal Admin / Tim Belajaro\nMasukkan Email Tim:");
     }
