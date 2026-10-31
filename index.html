@@ -5,8 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Belajaro - Mulai Aja Dulu, Paham Kemudian.</title>
   
+  <!-- CONDUIT PWA & APP ICON CONFIGURATION -->
+  <meta name="theme-color" content="#0F172A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Belajaro">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -16,9 +24,7 @@
             brand: {
               yellow: '#F59E0B',
               darkBg: '#0F172A',
-              cardBg: '#1E293B',
-              lightBg: '#F1F5F9',
-              lightCard: '#FFFFFF'
+              cardBg: '#1E293B'
             }
           }
         }
@@ -31,7 +37,7 @@
     .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 text-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between" id="bodyRoot">
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 text-slate-100 min-h-screen flex flex-col justify-between" id="bodyRoot">
 
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="p-4 flex justify-between items-center max-w-5xl mx-auto w-full border-b border-slate-700/40 backdrop-blur-md">
@@ -49,12 +55,12 @@
         <button onclick="logoutMember()" class="text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-1 rounded hover:bg-rose-500 hover:text-white transition">Logout</button>
       </div>
 
-      <!-- TOMBOL INSTALL KE HP (PWA SHORTCUT) -->
-      <button onclick="openInstallModal()" class="text-[11px] bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/40 px-2.5 py-2 rounded-xl transition flex items-center gap-1 font-semibold" title="Simpan sebagai Aplikasi HP">
-        <span>📱</span> <span class="hidden sm:inline">Install App</span>
+      <!-- TOMBOL SIMPAN KE HP (PWA AUTOMATIC PROMPT) -->
+      <button onclick="triggerPwaInstall()" class="text-[11px] bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/40 px-2.5 py-2 rounded-xl transition flex items-center gap-1 font-semibold" title="Simpan sebagai Aplikasi HP">
+        <span>📱</span> <span class="hidden sm:inline">Simpan ke HP</span>
       </button>
 
-      <!-- TOMBOL TEMA TERANG/GELAP (DIPERBAIKI AGAR 100% RESPONSIF DIKLIK) -->
+      <!-- TOMBOL TOGGLE TEMA -->
       <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 hover:scale-105 transition shadow-md cursor-pointer" title="Ubah Tema Terang/Gelap">
         <span id="themeIcon">☀️</span>
       </button>
@@ -133,13 +139,13 @@
     <div id="hskGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </main>
 
-  <!-- ================= SECTION 3: PLACEMENT TEST (MURNI SOAL BUKU MATERI) ================= -->
+  <!-- ================= SECTION 3: PLACEMENT TEST ================= -->
   <main id="testSection" class="max-w-2xl mx-auto px-4 py-8 w-full hidden">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-700/40">
         <div>
           <h2 class="text-xl font-bold text-amber-500">⏱️ Test Kemampuan Bahasa (5 Menit)</h2>
-          <p class="text-xs text-slate-400">Evaluasi komprehensif berdasarkan buku materi standar Hanban.</p>
+          <p class="text-xs text-slate-400">Evaluasi komprehensif berdasarkan materi standar Hanban.</p>
         </div>
         <button onclick="showLandingPage()" class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg">Keluar</button>
       </div>
@@ -156,18 +162,18 @@
     </div>
   </main>
 
-  <!-- ================= MODAL PANDUAN INSTALL APLIKASI HP (PWA) ================= -->
+  <!-- ================= MODAL FALLBACK INSTALL APP (KHUSUS IOS / IF AUTO FAILS) ================= -->
   <div id="installModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
     <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center">
       <button onclick="closeInstallModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
-      <span class="text-3xl">📱</span>
-      <h3 class="font-bold text-amber-500 text-xl mt-2">Jadikan Aplikasi di HP</h3>
-      <p class="text-xs text-slate-400 mb-4">Simpan Belajaro langsung ke layar utama HP Android atau iPhone Anda agar bisa dibuka layaknya aplikasi native!</p>
+      <span class="text-3xl">🏮</span>
+      <h3 class="font-bold text-amber-500 text-xl mt-2">Simpan Aplikasi Belajaro</h3>
+      <p class="text-xs text-slate-400 mb-4">Akses Belajaro langsung dari layar utama HP Anda dengan ikon resmi Belajaro 🏮.</p>
       
       <div class="space-y-3 text-left text-xs text-slate-300 bg-slate-800/60 p-4 rounded-xl border border-slate-700">
-        <p><b>🤖 Pengguna Android (Chrome):</b><br>Ketuk ikon titik tiga (⋮) di kanan atas browser, lalu pilih menu <b>"Tambahkan ke Layar Utama"</b> atau <b>"Install App"</b>.</p>
+        <p><b>🍏 Pengguna iPhone / iPad (Safari):</b><br>Ketuk ikon Bagikan (kotak panah ke atas ⎋) di Safari, lalu pilih <b>"Tambah ke Layar Utama" (Add to Home Screen)</b>.</p>
         <hr class="border-slate-700">
-        <p><b>🍏 Pengguna iPhone / iOS (Safari):</b><br>Ketuk ikon Bagikan (kotak dengan panah ke atas ⎋) di bagian bawah browser, lalu gulir dan pilih <b>"Tambahkan ke Layar Utama"</b>.</p>
+        <p><b>🤖 Pengguna Android (Chrome):</b><br>Ketuk tombol <b>"Simpan Otomatis"</b> di bawah atau menu titik tiga (⋮) lalu pilih <b>"Install App / Tambahkan ke Layar Utama"</b>.</p>
       </div>
 
       <button onclick="closeInstallModal()" class="mt-5 w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl text-xs transition">Mengerti & Tutup</button>
@@ -261,7 +267,7 @@
     </div>
   </div>
 
-  <!-- ================= FOOTER (TAHUN 2025) ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="text-center p-4 text-xs text-slate-400">
     © 2025 PT Belajaro Sukses Bersama. All Rights Reserved.
   </footer>
@@ -279,9 +285,53 @@
     <span class="tracking-wide">ADMIN WA</span>
   </a>
 
-  <!-- ================= SCRIPT LOGIKA LENGKAP ================= -->
+  <!-- ================= SCRIPT LOGIKA PWA & PROGRAM ================= -->
   <script>
-    // DATABASE KELAS & MATERI STANDAR HANBAN
+    // 1. REGISTRASI AUTOMATIC PWA PROMPT & WEB MANIFEST INJECTION
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    function triggerPwaInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User menyetujui instalasi PWA Belajaro');
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        openInstallModal();
+      }
+    }
+
+    // Injeksi Manifest.json otomatis agar berlogo Belajaro di HP
+    const manifestBlob = new Blob([JSON.stringify({
+      "name": "Belajaro - PT Belajaro Sukses Bersama",
+      "short_name": "Belajaro",
+      "start_url": "./",
+      "display": "standalone",
+      "background_color": "#0F172A",
+      "theme_color": "#0F172A",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>",
+          "sizes": "192x192 512x512",
+          "type": "image/svg+xml"
+        }
+      ]
+    })], { type: 'application/json' });
+    
+    const manifestLink = document.createElement('link');
+    manifestLink.rel = 'manifest';
+    manifestLink.href = URL.createObjectURL(manifestBlob);
+    document.head.appendChild(manifestLink);
+
+    // DATABASE KELAS & MATERI BUKU STANDAR HANBAN
     const hskData = [
       { id: "pinyin", level: "Persiapan: Pinyin & 4 Nada", vocabCount: "Modul Dasar", desc: "Fondasi wajib sebelum belajar Mandarin: mengenal Inisial, Final, dan 4 Nada suara.", badge: "Wajib", samples: [
         { hanzi: "ā (1)", pinyin: "Nada Datar", arti: "Nada tinggi lurus (mā = mama)", contoh: "妈 (mā)" },
@@ -316,7 +366,7 @@
       ]}
     ];
 
-    // 18 SOAL PLACEMENT TEST MURNI MATERI BUKU STANDAR HANBAN (TIDAK ADA SOAL JUMLAH KATA)
+    // 18 SOAL PLACEMENT TEST MURNI MATERI (BEBAS KATA HSK / JUMLAH KATA)
     const testQuestions = [
       { q: "Bagaimana arti dan pelafalan pinyin dari kata 'nǐ hǎo'?", opts: ["Halo", "Terima kasih", "Sampai jumpa", "Selamat malam"], target: 1 },
       { q: "Manakah karakter Hanzi yang tepat untuk arti 'Terima kasih'?", opts: ["谢谢", "再见", "你好", "老师"], target: 1 },
@@ -546,7 +596,7 @@
       showLandingPage();
     }
     
-    // TOGGLE TEMA TERANG / GELAP YANG DIPERBAIKI (100% RESPONSIF DIKLIK)
+    // TOGGLE TEMA TERANG / GELAP
     function toggleTheme() {
       const root = document.getElementById('bodyRoot');
       const themeIcon = document.getElementById('themeIcon');
