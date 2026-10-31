@@ -31,7 +31,7 @@
     .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 text-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 dark:text-slate-100 light:from-slate-100 light:via-slate-200 light:to-slate-300 light:text-slate-800 min-h-screen flex flex-col justify-between">
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 text-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between" id="bodyRoot">
 
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="p-4 flex justify-between items-center max-w-5xl mx-auto w-full border-b border-slate-700/40 backdrop-blur-md">
@@ -43,18 +43,23 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 md:gap-3">
       <div id="userProfile" class="hidden flex items-center gap-2">
         <span id="userName" class="text-xs font-bold text-amber-400">Siswa</span>
         <button onclick="logoutMember()" class="text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-1 rounded hover:bg-rose-500 hover:text-white transition">Logout</button>
       </div>
 
-      <!-- TOMBOL TEMA TERANG/GELAP -->
-      <button id="themeToggle" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-white text-amber-400 border border-slate-700 hover:scale-105 transition shadow-md" title="Ubah Tema Terang/Gelap">
+      <!-- TOMBOL INSTALL KE HP (PWA SHORTCUT) -->
+      <button onclick="openInstallModal()" class="text-[11px] bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/40 px-2.5 py-2 rounded-xl transition flex items-center gap-1 font-semibold" title="Simpan sebagai Aplikasi HP">
+        <span>📱</span> <span class="hidden sm:inline">Install App</span>
+      </button>
+
+      <!-- TOMBOL TEMA TERANG/GELAP (DIPERBAIKI AGAR 100% RESPONSIF DIKLIK) -->
+      <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 hover:scale-105 transition shadow-md cursor-pointer" title="Ubah Tema Terang/Gelap">
         <span id="themeIcon">☀️</span>
       </button>
 
-      <button onclick="openAdminModal()" class="text-xs bg-slate-800 dark:bg-slate-800 light:bg-white light:text-slate-700 border border-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow-sm">
+      <button onclick="openAdminModal()" class="text-xs bg-slate-800 border border-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow-sm">
         🔒 Tim Access
       </button>
     </div>
@@ -66,23 +71,23 @@
       Belajaro
     </h1>
     
-    <p class="text-lg md:text-xl text-slate-300 light:text-slate-700 italic font-medium mb-1">
+    <p class="text-lg md:text-xl text-slate-300 italic font-medium mb-1">
       "Mulai Aja Dulu, Paham Kemudian."
     </p>
     
-    <p class="text-xs text-slate-400 light:text-slate-500 tracking-wider uppercase font-semibold mb-8">
+    <p class="text-xs text-slate-400 tracking-wider uppercase font-semibold mb-8">
       PLATFORM BELAJAR MANDARIN INTERAKTIF & MULTI-SKILL
     </p>
 
     <!-- Tombol Menu Utama -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
-      <button onclick="openCatalog('guest')" class="p-4 rounded-xl bg-slate-800/80 dark:bg-slate-800/80 light:bg-white border border-slate-700 light:border-slate-300 text-left transition shadow-lg hover:border-amber-500/50">
+      <button onclick="openCatalog('guest')" class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-left transition shadow-lg hover:border-amber-500/50">
         <div class="font-bold text-amber-500">Mode Guest 🚀</div>
-        <div class="text-xs text-slate-400 light:text-slate-600 mt-1">Preview kurikulum belajar</div>
+        <div class="text-xs text-slate-400 mt-1">Preview kurikulum belajar</div>
       </button>
-      <button onclick="openPlacementTest()" class="p-4 rounded-xl bg-blue-600/20 light:bg-blue-50 border border-blue-500/40 text-left transition shadow-lg">
-        <div class="font-bold text-blue-400 light:text-blue-600">Test Level ⏱️</div>
-        <div class="text-xs text-slate-400 light:text-slate-600 mt-1">Cek kemampuan bahasa dalam 5 menit</div>
+      <button onclick="openPlacementTest()" class="p-4 rounded-xl bg-blue-600/20 border border-blue-500/40 text-left transition shadow-lg">
+        <div class="font-bold text-blue-400">Test Level ⏱️</div>
+        <div class="text-xs text-slate-400 mt-1">Cek kemampuan bahasa dalam 5 menit</div>
       </button>
       <button onclick="openAuthModal()" class="p-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-left transition shadow-lg">
         <div>Member 🔑</div>
@@ -91,58 +96,58 @@
     </div>
 
     <!-- Verifikasi Sertifikat -->
-    <div class="p-4 rounded-xl bg-slate-800/40 dark:bg-slate-800/40 light:bg-white border border-slate-700/50 light:border-slate-300 text-left max-w-md mx-auto shadow-sm">
-      <h3 class="text-xs font-bold uppercase text-slate-400 light:text-slate-600 tracking-wider mb-2">🎓 Verifikasi Sertifikat Kelulusan</h3>
+    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-left max-w-md mx-auto shadow-sm">
+      <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">🎓 Verifikasi Sertifikat Kelulusan</h3>
       <div class="flex gap-2">
-        <input type="text" id="certIdInput" placeholder="Masukkan ID Sertifikat (contoh: BLJ-2025-DEMO)" class="w-full text-xs p-2.5 rounded-lg bg-slate-900 dark:bg-slate-900 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-200 light:text-slate-800 focus:outline-none focus:border-amber-500">
+        <input type="text" id="certIdInput" placeholder="Masukkan ID Sertifikat (contoh: BLJ-2025-DEMO)" class="w-full text-xs p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
         <button onclick="verifyCertificate()" class="bg-amber-500 text-slate-900 px-4 py-2.5 rounded-lg text-xs font-bold hover:bg-amber-400 transition">Cek</button>
       </div>
       <div id="certResult" class="text-xs mt-2 hidden"></div>
     </div>
   </main>
 
-  <!-- ================= SECTION 2: KATALOG KURIKULUM (DENGAN MODUL PERSIAPAN PINYIN) ================= -->
+  <!-- ================= SECTION 2: KATALOG KURIKULUM ================= -->
   <main id="catalogSection" class="max-w-5xl mx-auto px-4 py-6 w-full hidden">
     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-700/40">
       <div>
         <h2 id="catalogTitle" class="text-2xl font-bold text-amber-500">Kurikulum Belajar Mandiri 🚀</h2>
-        <p class="text-xs text-slate-400 light:text-slate-600">Mulai dari dasar Pinyin hingga tingkat mahir.</p>
+        <p class="text-xs text-slate-400">Mulai dari dasar Pinyin hingga tingkat mahir.</p>
       </div>
-      <button onclick="showLandingPage()" class="text-xs bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-3 py-2 rounded-lg border border-slate-700 light:border-slate-300 transition">
+      <button onclick="showLandingPage()" class="text-xs bg-slate-800 text-slate-300 px-3 py-2 rounded-lg border border-slate-700 transition">
         ← Kembali
       </button>
     </div>
 
     <div class="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
       <button onclick="filterHsk('all', this)" class="hsk-tab active-tab bg-amber-500 text-slate-900 font-bold px-4 py-2 rounded-full text-xs whitespace-nowrap transition transform scale-105 shadow-md">Semua Modul</button>
-      <button onclick="filterHsk('pinyin', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">🎵 Persiapan: Pinyin & 4 Nada</button>
-      <button onclick="filterHsk('hsk1', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 1 (300 kata)</button>
-      <button onclick="filterHsk('hsk2', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 2 (500 kata)</button>
-      <button onclick="filterHsk('hsk3', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 3 (1.000 kata)</button>
-      <button onclick="filterHsk('hsk4', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 4 (2.000 kata)</button>
-      <button onclick="filterHsk('hsk5', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 5 (3.600 kata)</button>
-      <button onclick="filterHsk('hsk6', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 6 (5.400 kata)</button>
-      <button onclick="filterHsk('hsk79', this)" class="hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300">Level 7-9 (Advanced)</button>
+      <button onclick="filterHsk('pinyin', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">🎵 Persiapan: Pinyin & 4 Nada</button>
+      <button onclick="filterHsk('hsk1', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 1 (300 kata)</button>
+      <button onclick="filterHsk('hsk2', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 2 (500 kata)</button>
+      <button onclick="filterHsk('hsk3', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 3 (1.000 kata)</button>
+      <button onclick="filterHsk('hsk4', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 4 (2.000 kata)</button>
+      <button onclick="filterHsk('hsk5', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 5 (3.600 kata)</button>
+      <button onclick="filterHsk('hsk6', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 6 (5.400 kata)</button>
+      <button onclick="filterHsk('hsk79', this)" class="hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700">Level 7-9 (Advanced)</button>
     </div>
 
     <div id="hskGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </main>
 
-  <!-- ================= SECTION 3: PLACEMENT TEST (MURNI MATERI TANPA KATA HSK) ================= -->
+  <!-- ================= SECTION 3: PLACEMENT TEST (MURNI SOAL BUKU MATERI) ================= -->
   <main id="testSection" class="max-w-2xl mx-auto px-4 py-8 w-full hidden">
-    <div class="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-700 light:border-slate-300 rounded-2xl p-6 shadow-2xl">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-700/40">
         <div>
           <h2 class="text-xl font-bold text-amber-500">⏱️ Test Kemampuan Bahasa (5 Menit)</h2>
-          <p class="text-xs text-slate-400 light:text-slate-600">Evaluasi komprehensif untuk mendeteksi kemampuan bahasa Mandarin Anda.</p>
+          <p class="text-xs text-slate-400">Evaluasi komprehensif berdasarkan buku materi standar Hanban.</p>
         </div>
-        <button onclick="showLandingPage()" class="text-xs bg-slate-800 light:bg-slate-100 text-slate-300 light:text-slate-700 px-3 py-1.5 rounded-lg">Keluar</button>
+        <button onclick="showLandingPage()" class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg">Keluar</button>
       </div>
 
       <div id="quizContainer" class="space-y-4">
-        <div id="questionBox" class="p-4 bg-slate-800/60 dark:bg-slate-800/60 light:bg-slate-50 rounded-xl border border-slate-700 light:border-slate-200"></div>
+        <div id="questionBox" class="p-4 bg-slate-800/60 rounded-xl border border-slate-700"></div>
         <div class="flex justify-between">
-          <button id="prevBtn" onclick="prevQuestion()" class="bg-slate-800 light:bg-slate-100 text-slate-300 light:text-slate-700 px-4 py-2 rounded-xl text-xs hidden">← Sebelumnya</button>
+          <button id="prevBtn" onclick="prevQuestion()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs hidden">← Sebelumnya</button>
           <button id="nextBtn" onclick="nextQuestion()" class="ml-auto bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-6 py-2.5 rounded-xl text-xs">Selanjutnya →</button>
         </div>
       </div>
@@ -151,22 +156,40 @@
     </div>
   </main>
 
+  <!-- ================= MODAL PANDUAN INSTALL APLIKASI HP (PWA) ================= -->
+  <div id="installModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center">
+      <button onclick="closeInstallModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
+      <span class="text-3xl">📱</span>
+      <h3 class="font-bold text-amber-500 text-xl mt-2">Jadikan Aplikasi di HP</h3>
+      <p class="text-xs text-slate-400 mb-4">Simpan Belajaro langsung ke layar utama HP Android atau iPhone Anda agar bisa dibuka layaknya aplikasi native!</p>
+      
+      <div class="space-y-3 text-left text-xs text-slate-300 bg-slate-800/60 p-4 rounded-xl border border-slate-700">
+        <p><b>🤖 Pengguna Android (Chrome):</b><br>Ketuk ikon titik tiga (⋮) di kanan atas browser, lalu pilih menu <b>"Tambahkan ke Layar Utama"</b> atau <b>"Install App"</b>.</p>
+        <hr class="border-slate-700">
+        <p><b>🍏 Pengguna iPhone / iOS (Safari):</b><br>Ketuk ikon Bagikan (kotak dengan panah ke atas ⎋) di bagian bawah browser, lalu gulir dan pilih <b>"Tambahkan ke Layar Utama"</b>.</p>
+      </div>
+
+      <button onclick="closeInstallModal()" class="mt-5 w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl text-xs transition">Mengerti & Tutup</button>
+    </div>
+  </div>
+
   <!-- ================= MODAL PREVIEW KOSAKATA & PINYIN ================= -->
   <div id="materialModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-700 light:border-slate-300 w-full max-w-3xl rounded-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="p-4 border-b border-slate-700/40 flex justify-between items-center bg-slate-800/50 light:bg-slate-100">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-3xl rounded-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-700/40 flex justify-between items-center bg-slate-800/50">
         <div>
           <h3 id="modalTitle" class="font-bold text-amber-500 text-lg">Modul Pembelajaran</h3>
-          <p id="modalSubtitle" class="text-xs text-slate-400 light:text-slate-600">Preview Materi Pilihan</p>
+          <p id="modalSubtitle" class="text-xs text-slate-400">Preview Materi Pilihan</p>
         </div>
-        <button onclick="closeMaterialModal()" class="text-slate-400 hover:text-white light:hover:text-black p-2 text-xl font-bold">✕</button>
+        <button onclick="closeMaterialModal()" class="text-slate-400 hover:text-white p-2 text-xl font-bold">✕</button>
       </div>
       <div id="modalContent" class="p-4 overflow-y-auto space-y-3 text-xs"></div>
-      <div class="p-4 border-t border-slate-700/40 flex flex-col md:flex-row justify-between items-center gap-3 bg-slate-800/30 light:bg-slate-50">
+      <div class="p-4 border-t border-slate-700/40 flex flex-col md:flex-row justify-between items-center gap-3 bg-slate-800/30">
         <div class="text-[11px] text-amber-500 font-medium">✨ Ingin akses materi penuh & sertifikat resmi?</div>
         <div class="flex gap-2">
           <button onclick="closeMaterialModal(); openAuthModal();" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-xs transition">Lanjut Member & Ambil Sertifikat 🔑</button>
-          <button onclick="closeMaterialModal()" class="bg-slate-800 light:bg-slate-200 text-slate-300 light:text-slate-700 font-bold px-4 py-2 rounded-lg text-xs">Tutup</button>
+          <button onclick="closeMaterialModal()" class="bg-slate-800 text-slate-300 font-bold px-4 py-2 rounded-lg text-xs">Tutup</button>
         </div>
       </div>
     </div>
@@ -174,37 +197,37 @@
 
   <!-- ================= MODAL LOGIN & PILIHAN PAKET MEMBER ================= -->
   <div id="authModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-700 light:border-slate-300 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
-      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white light:hover:text-black">✕</button>
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
       <span class="text-3xl">🔑</span>
       <h3 class="font-bold text-amber-500 text-xl mt-2">Gabung Member Belajaro</h3>
-      <p class="text-xs text-slate-400 light:text-slate-600 mb-4">Pilih paket langganan untuk akses penuh semua materi & ujian bersertifikat.</p>
+      <p class="text-xs text-slate-400 mb-4">Pilih paket langganan untuk akses penuh semua materi & ujian bersertifikat.</p>
       
       <!-- Pilihan Paket Langganan -->
       <div id="packageContainer" class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-6 text-left">
-        <div onclick="selectPackage(this, '24jam')" class="pkg-card p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 cursor-pointer transition hover:border-amber-500">
+        <div onclick="selectPackage(this, '24jam')" class="pkg-card p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer transition hover:border-amber-500">
           <div class="text-[10px] bg-blue-500/20 text-blue-400 font-bold px-2 py-0.5 rounded w-max mb-1">Coba Dulu</div>
-          <div class="font-bold text-slate-100 light:text-slate-800 text-xs">24 Jam</div>
+          <div class="font-bold text-slate-100 text-xs">24 Jam</div>
           <div class="text-amber-500 font-extrabold text-sm mt-1">Rp 5.000</div>
-          <div class="text-[10px] text-slate-400 light:text-slate-500 mt-1">Akses penuh 1 hari</div>
+          <div class="text-[10px] text-slate-400 mt-1">Akses penuh 1 hari</div>
         </div>
-        <div onclick="selectPackage(this, '1tahun')" class="pkg-card p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border-2 border-amber-500 cursor-pointer transition shadow-md">
+        <div onclick="selectPackage(this, '1tahun')" class="pkg-card p-3 rounded-xl bg-slate-800 border-2 border-amber-500 cursor-pointer transition shadow-md">
           <div class="text-[10px] bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded w-max mb-1">Populer</div>
-          <div class="font-bold text-slate-100 light:text-slate-800 text-xs">1 Tahun</div>
+          <div class="font-bold text-slate-100 text-xs">1 Tahun</div>
           <div class="text-amber-500 font-extrabold text-sm mt-1">Rp 168.000</div>
-          <div class="text-[10px] text-slate-400 light:text-slate-500 mt-1">Full akses semua level</div>
+          <div class="text-[10px] text-slate-400 mt-1">Full akses semua level</div>
         </div>
-        <div onclick="selectPackage(this, '5tahun')" class="pkg-card p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 cursor-pointer transition hover:border-amber-500">
+        <div onclick="selectPackage(this, '5tahun')" class="pkg-card p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer transition hover:border-amber-500">
           <div class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded w-max mb-1">Hemat 60%</div>
-          <div class="font-bold text-slate-100 light:text-slate-800 text-xs">5 Tahun</div>
+          <div class="font-bold text-slate-100 text-xs">5 Tahun</div>
           <div class="text-amber-500 font-extrabold text-sm mt-1">Rp 359.000</div>
-          <div class="text-[10px] text-slate-400 light:text-slate-500 mt-1">Investasi panjang</div>
+          <div class="text-[10px] text-slate-400 mt-1">Investasi panjang</div>
         </div>
       </div>
 
       <div class="space-y-3 text-left">
-        <input type="email" id="loginEmail" placeholder="Alamat Email Aktif" class="w-full text-xs p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-200 light:text-slate-800 focus:outline-none focus:border-amber-500">
-        <input type="password" id="loginPassword" placeholder="Kata Sandi" class="w-full text-xs p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-200 light:text-slate-800 focus:outline-none focus:border-amber-500">
+        <input type="email" id="loginEmail" placeholder="Alamat Email Aktif" class="w-full text-xs p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
+        <input type="password" id="loginPassword" placeholder="Kata Sandi" class="w-full text-xs p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-500">
         <button onclick="loginWithEmail()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl text-xs transition">Bayar & Aktifkan Member Sekarang 🚀</button>
       </div>
     </div>
@@ -212,34 +235,34 @@
 
   <!-- ================= TEMPLATE SERTIFIKAT PRE-TEST (PDF DOWNLOAD) ================= -->
   <div id="certModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-700 light:border-slate-300 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative text-center">
-      <button onclick="closeCertModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white light:hover:text-black">✕</button>
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative text-center">
+      <button onclick="closeCertModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
       
-      <div id="pdfDownloadArea" class="bg-slate-950 dark:bg-slate-950 light:bg-slate-100 p-6 rounded-2xl border-2 border-amber-500/50 text-left space-y-3 my-2">
-        <div class="text-center border-b border-slate-800 light:border-slate-300 pb-3">
+      <div id="pdfDownloadArea" class="bg-slate-950 p-6 rounded-2xl border-2 border-amber-500/50 text-left space-y-3 my-2">
+        <div class="text-center border-b border-slate-800 pb-3">
           <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">PT Belajaro Sukses Bersama</span>
-          <h4 class="font-bold text-slate-100 light:text-slate-800 text-base mt-1">SERTIFIKAT PEMETAAN LEVEL (PRE-TEST)</h4>
+          <h4 class="font-bold text-slate-100 text-base mt-1">SERTIFIKAT PEMETAAN LEVEL (PRE-TEST)</h4>
         </div>
-        <div class="text-xs text-slate-300 light:text-slate-700 space-y-1.5 pt-2">
+        <div class="text-xs text-slate-300 space-y-1.5 pt-2">
           <p><b>Diberikan Kepada:</b> Peserta Test Mandiri</p>
           <p><b>Hasil Evaluasi:</b> <span id="pdfResultLevel" class="text-amber-500 font-bold"></span></p>
           <p><b>ID Unik Sertifikat:</b> <code id="pdfCertCode" class="text-amber-500 font-mono"></code></p>
         </div>
-        <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-[10px] text-amber-300 light:text-amber-800">
+        <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-[10px] text-amber-300">
           ⚠️ <b>Catatan:</b> Ini adalah sertifikat pre-test mandiri untuk mengetahui level kemampuan awal dan <u>tidak dapat</u> digunakan untuk melamar pekerjaan resmi.
         </div>
-        <p class="text-[9px] text-slate-400 light:text-slate-500 text-center">Diterbitkan secara resmi oleh platform Belajaro • belajaro.com</p>
+        <p class="text-[9px] text-slate-400 text-center">Diterbitkan secara resmi oleh platform Belajaro • belajaro.com</p>
       </div>
 
       <div class="flex gap-2 mt-4">
         <button onclick="downloadPDFCert()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl text-xs transition">📥 Unduh Sertifikat PDF</button>
-        <button onclick="closeCertModal()" class="bg-slate-800 light:bg-slate-200 text-slate-300 light:text-slate-700 font-bold px-4 py-3 rounded-xl text-xs">Tutup</button>
+        <button onclick="closeCertModal()" class="bg-slate-800 text-slate-300 font-bold px-4 py-3 rounded-xl text-xs">Tutup</button>
       </div>
     </div>
   </div>
 
-  <!-- ================= FOOTER (TAHUN 2025 SESUAI PERMINTAAN) ================= -->
-  <footer class="text-center p-4 text-xs text-slate-400 light:text-slate-600">
+  <!-- ================= FOOTER (TAHUN 2025) ================= -->
+  <footer class="text-center p-4 text-xs text-slate-400">
     © 2025 PT Belajaro Sukses Bersama. All Rights Reserved.
   </footer>
 
@@ -258,9 +281,9 @@
 
   <!-- ================= SCRIPT LOGIKA LENGKAP ================= -->
   <script>
-    // DATABASE KURIKULUM & MATERI PERSIAPAN PINYIN SAMPAI LEVEL 9
+    // DATABASE KELAS & MATERI STANDAR HANBAN
     const hskData = [
-      { id: "pinyin", level: "Persiapan: Pinyin & 4 Nada", vocabCount: "Modul Dasar", desc: "Fondasi wajib sebelum belajar Mandarin: mengenal Inisial, Final, dan 4 Nada suara agar tidak salah arti.", badge: "Wajib", samples: [
+      { id: "pinyin", level: "Persiapan: Pinyin & 4 Nada", vocabCount: "Modul Dasar", desc: "Fondasi wajib sebelum belajar Mandarin: mengenal Inisial, Final, dan 4 Nada suara.", badge: "Wajib", samples: [
         { hanzi: "ā (1)", pinyin: "Nada Datar", arti: "Nada tinggi lurus (mā = mama)", contoh: "妈 (mā)" },
         { hanzi: "á (2)", pinyin: "Nada Naik", arti: "Nada bertanya (má = rami)", contoh: "麻 (má)" },
         { hanzi: "ǎ (3)", pinyin: "Nada Turun-Naik", arti: "Nada melengkung (mǎ = kuda)", contoh: "马 (mǎ)" },
@@ -293,7 +316,7 @@
       ]}
     ];
 
-    // 18 SOAL PLACEMENT TEST MURNI MATERI (BEBAS KATA HSK)
+    // 18 SOAL PLACEMENT TEST MURNI MATERI BUKU STANDAR HANBAN (TIDAK ADA SOAL JUMLAH KATA)
     const testQuestions = [
       { q: "Bagaimana arti dan pelafalan pinyin dari kata 'nǐ hǎo'?", opts: ["Halo", "Terima kasih", "Sampai jumpa", "Selamat malam"], target: 1 },
       { q: "Manakah karakter Hanzi yang tepat untuk arti 'Terima kasih'?", opts: ["谢谢", "再见", "你好", "老师"], target: 1 },
@@ -309,7 +332,7 @@
       { q: "Manakah kata yang menyatakan keterangan tempat 'Di dalam'?", opts: ["里面", "外面", "前面", "后面"], target: 2 },
       { q: "Apa arti istilah formal bisnis 'zhàn lüè' (战略)?", opts: ["Strategi", "Struktur", "Statistik", "Standar"], target: 7 },
       { q: "Manakah kata sifat yang berarti 'Bahagia / Senang'?", opts: ["高兴", "难过", "生气", "累"], target: 1 },
-      { q: "Berapa jumlah total kata untuk level mahir lanjutan tingkat atas?", opts: ["±11.000 kata", "150 kata", "500 kata", "1.000 kata"], target: 7 },
+      { q: "Manakah kalimat tanya yang benar untuk menanyakan 'Siapa nama kamu?'", opts: ["你叫什么名字？", "你是哪里人？", "你几岁了？", "你在哪里？"], target: 1 },
       { q: "Manakah kata benda yang berarti 'Buku'?", opts: ["书", "笔", "桌子", "椅子"], target: 1 },
       { q: "Apa arti kosa kata 'shí jiān' (时间)?", opts: ["Waktu", "Tempat", "Uang", "Harga"], target: 2 },
       { q: "Manakah bentuk kata ganti orang pertama plural 'Kami / Kita'?", opts: ["我们", "你", "他", "他们"], target: 1 }
@@ -325,17 +348,17 @@
       hskData.forEach(item => {
         if (filter === 'all' || item.id === filter) {
           const card = document.createElement('div');
-          card.className = "bg-slate-800/80 dark:bg-slate-800/80 light:bg-white border border-slate-700 light:border-slate-300 rounded-xl p-5 flex flex-col justify-between hover:border-amber-500/50 transition shadow-lg";
+          card.className = "bg-slate-800/80 border border-slate-700 rounded-xl p-5 flex flex-col justify-between hover:border-amber-500/50 transition shadow-lg";
           card.innerHTML = `
             <div>
               <div class="flex justify-between items-center mb-2">
                 <span class="text-[10px] bg-amber-500/20 text-amber-500 font-bold px-2 py-0.5 rounded">${item.badge}</span>
-                <span class="text-[10px] text-slate-300 light:text-slate-600 font-semibold">${item.vocabCount}</span>
+                <span class="text-[10px] text-slate-300 font-semibold">${item.vocabCount}</span>
               </div>
-              <h3 class="font-bold text-slate-100 light:text-slate-800 text-base mb-1">${item.level}</h3>
-              <p class="text-xs text-slate-400 light:text-slate-600 mb-4">${item.desc}</p>
+              <h3 class="font-bold text-slate-100 text-base mb-1">${item.level}</h3>
+              <p class="text-xs text-slate-400 mb-4">${item.desc}</p>
             </div>
-            <button onclick="openMaterialModal('${item.id}')" class="w-full bg-slate-700 light:bg-slate-100 hover:bg-amber-500 hover:text-slate-900 text-amber-500 light:text-slate-700 font-bold py-2.5 rounded-lg text-xs transition">
+            <button onclick="openMaterialModal('${item.id}')" class="w-full bg-slate-700 hover:bg-amber-500 hover:text-slate-900 text-amber-500 font-bold py-2.5 rounded-lg text-xs transition">
               Preview Materi 📖
             </button>
           `;
@@ -346,7 +369,7 @@
 
     function filterHsk(cat, btnElement) {
       document.querySelectorAll('.hsk-tab').forEach(btn => {
-        btn.className = "hsk-tab bg-slate-800 dark:bg-slate-800 light:bg-white text-slate-300 light:text-slate-700 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700 light:border-slate-300";
+        btn.className = "hsk-tab bg-slate-800 text-slate-300 px-4 py-2 rounded-full text-xs whitespace-nowrap transition border border-slate-700";
       });
       btnElement.className = "hsk-tab bg-amber-500 text-slate-900 font-bold px-4 py-2 rounded-full text-xs whitespace-nowrap transition transform scale-105 shadow-md border border-amber-400";
       renderHskGrid(cat);
@@ -367,9 +390,9 @@
 
     function selectPackage(element, pkgType) {
       document.querySelectorAll('.pkg-card').forEach(card => {
-        card.className = "pkg-card p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 cursor-pointer transition hover:border-amber-500";
+        card.className = "pkg-card p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer transition hover:border-amber-500";
       });
-      element.className = "pkg-card p-3 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border-2 border-amber-500 cursor-pointer transition shadow-md";
+      element.className = "pkg-card p-3 rounded-xl bg-slate-800 border-2 border-amber-500 cursor-pointer transition shadow-md";
     }
 
     function openPlacementTest() {
@@ -389,12 +412,12 @@
         <div class="flex justify-between items-center mb-2">
           <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded font-bold">Soal ${currentQIndex + 1} dari ${testQuestions.length}</span>
         </div>
-        <h3 class="text-sm font-bold text-slate-200 light:text-slate-800 mt-2 mb-3">${q.q}</h3>
+        <h3 class="text-sm font-bold text-slate-200 mt-2 mb-3">${q.q}</h3>
         <div class="space-y-2 text-xs">
       `;
       q.opts.forEach((opt, idx) => {
         const checked = userAnswers[currentQIndex] === idx ? 'checked' : '';
-        html += `<label class="block p-3 bg-slate-900 dark:bg-slate-900 light:bg-white border border-slate-700 light:border-slate-200 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="testOpt" value="${idx}" ${checked} onclick="userAnswers[currentQIndex]=${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>`;
+        html += `<label class="block p-3 bg-slate-900 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500"><input type="radio" name="testOpt" value="${idx}" ${checked} onclick="userAnswers[currentQIndex]=${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>`;
       });
       html += `</div>`;
       box.innerHTML = html;
@@ -477,17 +500,17 @@
       document.getElementById('modalTitle').innerText = item.level;
       document.getElementById('modalSubtitle').innerText = `${item.vocabCount} - Kurikulum Belajar`;
       
-      let html = `<p class="text-slate-300 light:text-slate-700 font-medium mb-2">${item.desc}</p>`;
+      let html = `<p class="text-slate-300 font-medium mb-2">${item.desc}</p>`;
       item.samples.forEach((s, i) => {
         html += `
-          <div class="p-3 bg-slate-800 dark:bg-slate-800 light:bg-slate-100 rounded-lg border border-slate-700 light:border-slate-300">
+          <div class="p-3 bg-slate-800 rounded-lg border border-slate-700">
             <div class="flex items-center gap-3">
               <span class="text-amber-500 font-bold">#${i+1}</span>
               <span class="text-lg font-bold text-amber-500">${s.hanzi}</span>
-              <span class="text-slate-400 light:text-slate-600 italic">(${s.pinyin})</span>
-              <span class="font-semibold text-slate-200 light:text-slate-800">= ${s.arti}</span>
+              <span class="text-slate-400 italic">(${s.pinyin})</span>
+              <span class="font-semibold text-slate-200">= ${s.arti}</span>
             </div>
-            <p class="text-slate-400 light:text-slate-600 text-[11px] mt-1">Contoh: ${s.contoh}</p>
+            <p class="text-slate-400 text-[11px] mt-1">Contoh: ${s.contoh}</p>
           </div>
         `;
       });
@@ -523,19 +546,29 @@
       showLandingPage();
     }
     
-    // TOGGLE TEMA TERANG / GELAP
+    // TOGGLE TEMA TERANG / GELAP YANG DIPERBAIKI (100% RESPONSIF DIKLIK)
     function toggleTheme() {
-      const htmlClass = document.documentElement.classList;
+      const root = document.getElementById('bodyRoot');
       const themeIcon = document.getElementById('themeIcon');
-      if (htmlClass.contains('dark')) {
-        htmlClass.remove('dark');
-        htmlClass.add('light');
-        themeIcon.innerText = '🌙';
-      } else {
-        htmlClass.remove('light');
-        htmlClass.add('dark');
+      
+      if (root.classList.contains('light-theme')) {
+        root.classList.remove('light-theme');
+        root.className = "bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 text-slate-100 min-h-screen flex flex-col justify-between";
         themeIcon.innerText = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        root.classList.add('light-theme');
+        root.className = "light-theme bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 text-slate-900 min-h-screen flex flex-col justify-between";
+        themeIcon.innerText = '🌙';
+        localStorage.setItem('theme', 'light');
       }
+    }
+
+    function openInstallModal() {
+      document.getElementById('installModal').classList.remove('hidden');
+    }
+    function closeInstallModal() {
+      document.getElementById('installModal').classList.add('hidden');
     }
 
     function openAdminModal() {
