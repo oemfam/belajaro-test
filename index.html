@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Belajaro - Mulai Aja Dulu, Paham Kemudian.</title>
   
-  <!-- CONDUIT PWA & APP ICON CONFIGURATION -->
+  <!-- CONFIGURASI PWA & LOGO ASLI DARI GITHUB -->
   <meta name="theme-color" content="#0F172A">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Belajaro">
+  <link rel="apple-touch-icon" href="logo.jpg">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -41,8 +42,8 @@
 
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="p-4 flex justify-between items-center max-w-5xl mx-auto w-full border-b border-slate-700/40 backdrop-blur-md">
-    <div class="flex items-center gap-2 cursor-pointer" onclick="showLandingPage()">
-      <span class="text-2xl">🏮</span>
+    <div class="flex items-center gap-2.5 cursor-pointer" onclick="showLandingPage()">
+      <img src="logo.jpg" alt="Logo Belajaro" class="w-9 h-9 object-cover rounded-xl border border-amber-500/50 shadow-sm">
       <div>
         <span class="font-bold text-xl tracking-wide text-amber-500 block leading-none">Belajaro</span>
         <span class="text-[9px] text-slate-400 font-semibold tracking-wider uppercase">PT Belajaro Sukses Bersama</span>
@@ -55,7 +56,7 @@
         <button onclick="logoutMember()" class="text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-1 rounded hover:bg-rose-500 hover:text-white transition">Logout</button>
       </div>
 
-      <!-- TOMBOL SIMPAN KE HP (PWA AUTOMATIC PROMPT) -->
+      <!-- TOMBOL SIMPAN KE LAYAR HP (PWA) -->
       <button onclick="triggerPwaInstall()" class="text-[11px] bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/40 px-2.5 py-2 rounded-xl transition flex items-center gap-1 font-semibold" title="Simpan sebagai Aplikasi HP">
         <span>📱</span> <span class="hidden sm:inline">Simpan ke HP</span>
       </button>
@@ -73,6 +74,9 @@
 
   <!-- ================= SECTION 1: LANDING PAGE UTAMA ================= -->
   <main id="landingSection" class="max-w-3xl mx-auto px-4 text-center my-auto py-8">
+    <div class="flex justify-center mb-4">
+      <img src="logo.jpg" alt="Logo Belajaro" class="w-20 h-20 object-cover rounded-2xl border-2 border-amber-500/70 shadow-2xl">
+    </div>
     <h1 class="text-4xl md:text-5xl font-extrabold text-amber-500 mb-2 drop-shadow-sm">
       Belajaro
     </h1>
@@ -162,18 +166,18 @@
     </div>
   </main>
 
-  <!-- ================= MODAL FALLBACK INSTALL APP (KHUSUS IOS / IF AUTO FAILS) ================= -->
+  <!-- ================= MODAL PANDUAN / INSTALL APP ================= -->
   <div id="installModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
     <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-center">
       <button onclick="closeInstallModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">✕</button>
-      <span class="text-3xl">🏮</span>
-      <h3 class="font-bold text-amber-500 text-xl mt-2">Simpan Aplikasi Belajaro</h3>
-      <p class="text-xs text-slate-400 mb-4">Akses Belajaro langsung dari layar utama HP Anda dengan ikon resmi Belajaro 🏮.</p>
+      <img src="logo.jpg" alt="Logo" class="w-16 h-16 object-cover rounded-2xl mx-auto border border-amber-500/50 shadow-md">
+      <h3 class="font-bold text-amber-500 text-xl mt-3">Simpan Aplikasi ke HP</h3>
+      <p class="text-xs text-slate-400 mb-4">Akses Belajaro langsung dari layar utama HP Anda dengan ikon resmi.</p>
       
       <div class="space-y-3 text-left text-xs text-slate-300 bg-slate-800/60 p-4 rounded-xl border border-slate-700">
-        <p><b>🍏 Pengguna iPhone / iPad (Safari):</b><br>Ketuk ikon Bagikan (kotak panah ke atas ⎋) di Safari, lalu pilih <b>"Tambah ke Layar Utama" (Add to Home Screen)</b>.</p>
+        <p><b>🍏 Pengguna iPhone (Safari):</b><br>Ketuk ikon Bagikan (kotak panah ke atas ⎋) di Safari, lalu pilih <b>"Tambah ke Layar Utama" (Add to Home Screen)</b>.</p>
         <hr class="border-slate-700">
-        <p><b>🤖 Pengguna Android (Chrome):</b><br>Ketuk tombol <b>"Simpan Otomatis"</b> di bawah atau menu titik tiga (⋮) lalu pilih <b>"Install App / Tambahkan ke Layar Utama"</b>.</p>
+        <p><b>🤖 Pengguna Android (Chrome):</b><br>Ketuk ikon titik tiga (⋮) di kanan atas browser, lalu pilih <b>"Tambahkan ke Layar Utama"</b> atau <b>"Install App"</b>.</p>
       </div>
 
       <button onclick="closeInstallModal()" class="mt-5 w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl text-xs transition">Mengerti & Tutup</button>
@@ -267,7 +271,7 @@
     </div>
   </div>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- ================= FOOTER (TAHUN 2025) ================= -->
   <footer class="text-center p-4 text-xs text-slate-400">
     © 2025 PT Belajaro Sukses Bersama. All Rights Reserved.
   </footer>
@@ -287,7 +291,7 @@
 
   <!-- ================= SCRIPT LOGIKA PWA & PROGRAM ================= -->
   <script>
-    // 1. REGISTRASI AUTOMATIC PWA PROMPT & WEB MANIFEST INJECTION
+    // 1. PWA AUTOMATIC INSTALL PROMPT MENGGUNAKAN logo.jpg
     let deferredPrompt;
 
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -299,9 +303,6 @@
       if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User menyetujui instalasi PWA Belajaro');
-          }
           deferredPrompt = null;
         });
       } else {
@@ -309,7 +310,7 @@
       }
     }
 
-    // Injeksi Manifest.json otomatis agar berlogo Belajaro di HP
+    // Injeksi Manifest.json dinamis menggunakan logo.jpg dari GitHub
     const manifestBlob = new Blob([JSON.stringify({
       "name": "Belajaro - PT Belajaro Sukses Bersama",
       "short_name": "Belajaro",
@@ -319,9 +320,9 @@
       "theme_color": "#0F172A",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>",
+          "src": "logo.jpg",
           "sizes": "192x192 512x512",
-          "type": "image/svg+xml"
+          "type": "image/jpeg"
         }
       ]
     })], { type: 'application/json' });
@@ -331,7 +332,7 @@
     manifestLink.href = URL.createObjectURL(manifestBlob);
     document.head.appendChild(manifestLink);
 
-    // DATABASE KELAS & MATERI BUKU STANDAR HANBAN
+    // DATABASE KELAS & MATERI STANDAR HANBAN
     const hskData = [
       { id: "pinyin", level: "Persiapan: Pinyin & 4 Nada", vocabCount: "Modul Dasar", desc: "Fondasi wajib sebelum belajar Mandarin: mengenal Inisial, Final, dan 4 Nada suara.", badge: "Wajib", samples: [
         { hanzi: "ā (1)", pinyin: "Nada Datar", arti: "Nada tinggi lurus (mā = mama)", contoh: "妈 (mā)" },
@@ -339,29 +340,29 @@
         { hanzi: "ǎ (3)", pinyin: "Nada Turun-Naik", arti: "Nada melengkung (mǎ = kuda)", contoh: "马 (mǎ)" },
         { hanzi: "à (4)", pinyin: "Nada Tegas/Turun", arti: "Nada membentak (mà = marah)", contoh: "骂 (mà)" }
       ]},
-      { id: "hsk1", level: "Level 1", vocabCount: "300 Kata", desc: "Dasar pengenalan Hanzi, Pinyin, Nada, dan sapaan esensial[cite: 7].", badge: "Dasar", samples: [
+      { id: "hsk1", level: "Level 1", vocabCount: "300 Kata", desc: "Dasar pengenalan Hanzi, Pinyin, Nada, dan sapaan esensial.", badge: "Dasar", samples: [
         { hanzi: "你好", pinyin: "nǐ hǎo", arti: "Halo", contoh: "你好！很高兴认识你。" },
         { hanzi: "谢谢", pinyin: "xiè xie", arti: "Terima kasih", contoh: "谢谢你的帮助。" },
         { hanzi: "再见", pinyin: "zài jiàn", arti: "Sampai jumpa", contoh: "明天见，再见！" }
       ]},
-      { id: "hsk2", level: "Level 2", vocabCount: "500 Kata", desc: "Komunikasi rutin topik sederhana sehari-hari[cite: 7].", badge: "Dasar", samples: [
+      { id: "hsk2", level: "Level 2", vocabCount: "500 Kata", desc: "Komunikasi rutin topik sederhana sehari-hari.", badge: "Dasar", samples: [
         { hanzi: "准备", pinyin: "zhǔn bèi", arti: "Persiapan", contoh: "你准备好了吗？" },
         { hanzi: "时间", pinyin: "shí jiān", arti: "Waktu", contoh: "我没有时间。" }
       ]},
-      { id: "hsk3", level: "Level 3", vocabCount: "1.000 Kata", desc: "Kehidupan pribadi, akademik, & sosial dasar[cite: 7].", badge: "Dasar", samples: [
+      { id: "hsk3", level: "Level 3", vocabCount: "1.000 Kata", desc: "Kehidupan pribadi, akademik, & sosial dasar.", badge: "Dasar", samples: [
         { hanzi: "环境", pinyin: "huán jìng", arti: "Lingkungan", contoh: "这里的环境很好。" },
         { hanzi: "决定", pinyin: "jué dìng", arti: "Memutuskan", contoh: "我已经决定了。" }
       ]},
-      { id: "hsk4", level: "Level 4", vocabCount: "2.000 Kata", desc: "Diskusi lancar berbagai topik dengan penutur asli[cite: 7].", badge: "Menengah", samples: [
+      { id: "hsk4", level: "Level 4", vocabCount: "2.000 Kata", desc: "Diskusi lancar berbagai topik dengan penutur asli.", badge: "Menengah", samples: [
         { hanzi: "经验", pinyin: "jīng yàn", arti: "Pengalaman", contoh: "他有 rich 工作经验。" }
       ]},
-      { id: "hsk5", level: "Level 5", vocabCount: "3.600 Kata", desc: "Membaca koran dan menonton film Mandarin[cite: 7].", badge: "Menengah", samples: [
+      { id: "hsk5", level: "Level 5", vocabCount: "3.600 Kata", desc: "Membaca koran dan menonton film Mandarin.", badge: "Menengah", samples: [
         { hanzi: "贡献", pinyin: "gòng xiàn", arti: "Kontribusi", contoh: "做出巨大贡献。" }
       ]},
-      { id: "hsk6", level: "Level 6", vocabCount: "5.400 Kata", desc: "Memahami informasi lisan & tertulis tingkat lanjut[cite: 7].", badge: "Menengah", samples: [
+      { id: "hsk6", level: "Level 6", vocabCount: "5.400 Kata", desc: "Memahami informasi lisan & tertulis tingkat lanjut.", badge: "Menengah", samples: [
         { hanzi: "抽象", pinyin: "chōu xiàng", arti: "Abstrak", contoh: "概念比较抽象。" }
       ]},
-      { id: "hsk79", level: "Level 7 - 9", vocabCount: "±11.000 Kata", desc: "Tingkat Mahir: Akademik, Bisnis Internasional, Sastra[cite: 7].", badge: "Mahir", samples: [
+      { id: "hsk79", level: "Level 7 - 9", vocabCount: "±11.000 Kata", desc: "Tingkat Mahir: Akademik, Bisnis Internasional, Sastra.", badge: "Mahir", samples: [
         { hanzi: "战略", pinyin: "zhàn lüè", arti: "Strategi", contoh: "商业战略规划。" }
       ]}
     ];
